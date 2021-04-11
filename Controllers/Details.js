@@ -18,14 +18,34 @@ exports.createDetails = async(req, res) => {
 exports.getDetails = async(req, res) => {
     try {
         const details = await Details.find({});
-        res.status(200).json({
-            message: "The data successfully fetched",
-            data: details
-        })
+        res.status(200).json(
+             details
+        )
     } catch (error) {
         res.status(404).json({
             message: "Couldnt get the data",
             error: error
         })
+    }
+}
+
+exports.getDetailsByState = async(req, res) => {
+    let name = req.params.name;
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    console.log(name)
+    try {
+        const cases = await Details.findOne({state: name}); 
+        res.status(200).json(cases)
+    } catch (error) {
+        res.status(404).json({message: "Couldnt find state"})
+    }
+}
+
+exports.alarmingDetails = async(req, res) => {
+    try {
+        const cases = await Details.find({services: {$gte: 1.0}});
+        res.status(200).json(cases)
+    } catch (error) {
+        res.status(404).json({message: "Couldnt find state"})
     }
 }
