@@ -11,7 +11,8 @@ const app = express();
 //Routes
 const statecases = require('./Routes/Statewise');
 const details = require('./Routes/Details');
-const bio = require('./Routes/Bio')
+const bio = require('./Routes/Bio');
+const protein = require('./Routes/Protein')
 
 app.use(express.json());
 app.use(cors({origin: "http://localhost:3000"}))
@@ -34,7 +35,8 @@ connDB();
 //Using the routes
 app.use('/api/v1', statecases);
 app.use('/api/v1', details);
-app.use('/api/v1', bio)
+app.use('/api/v1', bio);
+app.use('/api/v1', protein)
 
 const PORT= process.env.PORT || 5000
 app.listen(PORT,()=>console.log(`Server running at port ${PORT}`.green.bold));
