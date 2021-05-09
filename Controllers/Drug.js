@@ -27,7 +27,11 @@ exports.getDrugs = async(req, res) =>{
 exports.getDrugById = async(req, res) =>{
     try {
         const drug = await Drug.findById(req.params.id)
+        res.status(200).json(drug)
     } catch (err) {
-        
+        res.status(404).json({
+            success: false,
+            msg: "Couldnt get drugs"
+        })
     }
 }
