@@ -1,7 +1,8 @@
-import StateState from './context/StateContext/StateState';
-import DetailsState from './context/DetailsContext/DetailsState';
-import DrugState from './context/DrugsContext/DrugsState';
-import ProteinState from './context/ProteinContext/ProteinState';
+import StateState from "./context/StateContext/StateState"
+import  DetailsState from "./context/DetailsContext/DetailsState"
+import DrugState from "./context/DrugsContext/DrugsState"
+import ProteinState from "./context/ProteinContext/ProteinState"
+import GeneState from "./context/GeneContext/GeneState"
 
 import StateWiseDetails from './Components/DetailsWise/StateWiseDetails/StateWiseDetails';
 import GetAllDrugs from './Components/Drugs/GetAllDrugs/GetAllDrugs';
