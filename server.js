@@ -13,7 +13,8 @@ const statecases = require('./Routes/Statewise');
 const details = require('./Routes/Details');
 const bio = require('./Routes/Bio');
 const protein = require('./Routes/Protein');
-const gene = require('./Routes/Gene')
+const gene = require('./Routes/Gene');
+const drug = require('./Routes/Drugs');
 
 app.use(express.json());
 app.use(cors({origin: "http://localhost:3000"}))
@@ -39,6 +40,7 @@ app.use('/api/v1', details);
 app.use('/api/v1', bio);
 app.use('/api/v1', protein);
 app.use('/api/v1', gene);
+app.use('/api/v1', drug);
 
 const PORT= process.env.PORT || 5000
 app.listen(PORT,()=>console.log(`Server running at port ${PORT}`.green.bold));
