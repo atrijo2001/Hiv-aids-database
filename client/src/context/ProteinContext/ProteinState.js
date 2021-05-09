@@ -13,17 +13,35 @@ const ProteinState = (props) => {
     const [state, dispatch] = useReducer(ProteinReducer, initialState);
 
     //Fetch all the proteins
-    const FetchProteins = async(pdb)=>{
+    const FetchProteins = async(pdb, structure)=>{
         try {
-            const {data} = await axios.get("http://localhost:5000/api/v1/getprotein", {
-                params:{
-                    "pdbAccessionId": pdb
-                }
-            });
-            dispatch({
-                type: PROTEIN_FETCH_SUCCESS,
-                payload: data
-            })
+            if(pdb !== ''){
+                const {data} = await axios.get("http://localhost:5000/api/v1/getprotein", {
+                    params:{
+                        "pdbAccessionId": pdb,
+                    }
+                });
+                dispatch({
+                    type: PROTEIN_FETCH_SUCCESS,
+                    payload: data
+                })
+            } else if(structure!==''){
+                const {data} = await axios.get("http://localhost:5000/api/v1/getprotein",{
+                    params:{
+                        "structureDetails": structure
+                    }
+                });
+                dispatch({
+                    type: PROTEIN_FETCH_SUCCESS,
+                    payload: data
+                })
+            } else{
+                const {data} = await axios.get("http://localhost:5000/api/v1/getprotein");
+                dispatch({
+                    type: PROTEIN_FETCH_SUCCESS,
+                    payload: data
+                })
+            }
         } catch (err) {
             dispatch({
                 type: PROTEIN_FETCH_FAILED,

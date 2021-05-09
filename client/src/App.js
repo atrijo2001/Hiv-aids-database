@@ -5,6 +5,8 @@ import ProteinState from "./context/ProteinContext/ProteinState"
 
 import StateWiseDetails from "./Components/DetailsWise/StateWiseDetails/StateWiseDetails"
 import GetAllDrugs from "./Components/Drugs/GetAllDrugs/GetAllDrugs"
+import GetAllProteins from "./Components/Protein/GetAllProtein/GetAllProtein";
+
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 
 const App = () => {
@@ -17,6 +19,7 @@ const App = () => {
             <Switch>
               <Route exact path='/statewisedetails' component={StateWiseDetails}/>
               <Route exact path='/getalldrugs' component={GetAllDrugs}/>
+              <Route exact path='/getallproteins' component={GetAllProteins}/>
             </Switch>
           </BrowserRouter>
           </ProteinState>
