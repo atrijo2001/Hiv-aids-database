@@ -1,33 +1,39 @@
-import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_SUCCESS, PARTICULAR_DETAILS_FAILED, DRUG_BYID_SUCCESS, DRUG_BYID_FAILED} from "../types"
+import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_SUCCESS, PARTICULAR_DETAILS_FAILED, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS} from "../types"
 
 export default (state, action) => {
     switch (action.type) {
         case DETAILS_FETCH_SUCCESS:
             return{
                 ...state,
-                stateWiseDetails: action.payload
+                stateWiseDetails: action.payload,
+                errors: undefined
             }
         case DETAILS_FETCH_FAILED:
             return{
-
+                 ...state,
+                 errors: action.payload
             }
         case PARTICULAR_DETAILS_SUCCESS:
             return{
                 ...state,
-                particularStateDetails: action.payload
+                particularStateDetails: action.payload,
+                errors: undefined
             }
         case PARTICULAR_DETAILS_FAILED:
             return{
-
+                ...state,
+                errors: action.payload
             }
-        case DRUG_BYID_SUCCESS:
+        case DETAILS_DANGER_SUCCESS:
             return{
                 ...state,
-                particularDrug: action.payload
+                dangerStates: action.payload,
+                errors: undefined
             }
-        case DRUG_BYID_FAILED:
+        case DETAILS_DANGER_FAILED:
             return{
-                
+                ...state,
+                errors: action.payload
             }
     }
 }

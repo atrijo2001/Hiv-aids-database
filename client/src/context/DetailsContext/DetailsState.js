@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, {useReducer} from 'react';
 import DetailsContext from "./DetailsContext";
 import DetailsReducer from "./DetailsReducer";
-import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_FAILED, PARTICULAR_DETAILS_SUCCESS} from "../types"
+import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_FAILED, PARTICULAR_DETAILS_SUCCESS, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS} from "../types"
 
 const DetailsState = (props) => {
     const initialState = {
         stateWiseDetails: [],
         particularStateDetails: {},
-        dangerStates: []
+        dangerStates: [],
+        errors: {}
     }
 
     const [state, dispatch] = useReducer(DetailsReducer, initialState);
@@ -23,7 +24,8 @@ const DetailsState = (props) => {
             })
         } catch (err) {
             dispatch({
-                type: DETAILS_FETCH_FAILED
+                type: DETAILS_FETCH_FAILED,
+                err
             })
         }
     }
@@ -38,7 +40,24 @@ const DetailsState = (props) => {
             })
         } catch (err) {
             dispatch({
-                PARTICULAR_DETAILS_FAILED
+                PARTICULAR_DETAILS_FAILED,
+                err
+            })
+        }
+    }
+
+    //Fetch All the danger states
+    const FetchDangerDetails = async()=>{
+        try {
+            const {data} = await axios.get("http://localhost:5000/api/v1/details/alarmingservices");
+            dispatch({
+                type: DETAILS_DANGER_SUCCESS,
+                payload: data
+            })
+        } catch (err) {
+            dispatch({
+                type: DETAILS_FETCH_FAILED,
+                payload: err
             })
         }
     }

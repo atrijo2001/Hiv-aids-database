@@ -5,30 +5,35 @@ export default (state, action) => {
         case DRUG_FETCH_SUCCESS:
             return{
                 ...state,
-                alldrugs: state.alldrugs
+                alldrugs: action.payload,
+                error: undefined
             }
         case DRUG_FETCH_FAILED:
             return{
                 ...state,
-                error: state.error
+                error: action.payload
             }
         case DRUG_ADD_SUCCESS:
             return{
                 ...state,
-                alldrugs: [...state.alldrugs, action.payload]
+                alldrugs: [...state.alldrugs, action.payload],
+                error: undefined
             }
         case DRUG_ADD_FAILED:
             return{
-                
+                ...state,
+                error: action.payload
             }
         case DRUG_BYID_SUCCESS:
             return{
                 ...state,
-                particularDrug: state.particularDrug
+                particularDrug: action.payload,
+                error: undefined
             }
         case DRUG_BYID_FAILED:
             return{
-
+               ...state,
+               error: action.payload
             }
     }
 }

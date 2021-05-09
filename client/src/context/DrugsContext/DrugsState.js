@@ -11,7 +11,7 @@ const DrugsState = (props) => {
         error: {}
     }
 
-    const [state, dispatch] = useReducer(initialState, DrugsReducer);
+    const [state, dispatch] = useReducer(DrugsReducer, initialState);
 
     //Fetch all drugs from the database
     const FetchDrugs = async() =>{
