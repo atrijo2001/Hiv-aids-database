@@ -3,6 +3,7 @@ import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Paper, Typography, Button } from '@material-ui/core';
 import './Homepage.css';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -24,7 +25,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Homepage = () => {
-	const classes = useStyles();
+    const classes = useStyles();
+    const history = useHistory();
+
+    const handleChangeScientist = () => {
+        history.push('/scientist')
+    }
+    const handleChangeLayman = () => {
+			history.push('/layman');
+		};
+
 	return (
 		<>
 			<Header />
@@ -34,10 +44,18 @@ const Homepage = () => {
 						Choose your proffession:
 					</Typography>
 					<Grid xs={8}>
-						<Button variant='contained' className={classes.button}>
+						<Button
+							variant='contained'
+							className={classes.button}
+							onClick={handleChangeScientist}
+						>
 							Scientist
 						</Button>
-						<Button variant='contained' className={classes.button}>
+						<Button
+							variant='contained'
+							className={classes.button}
+							onClick={handleChangeLayman}
+						>
 							Layman
 						</Button>
 					</Grid>

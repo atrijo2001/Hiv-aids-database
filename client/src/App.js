@@ -10,6 +10,8 @@ import GetAllProteins from './Components/Protein/GetAllProtein/GetAllProtein';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Homepage from './Components/UI/Homepage';
+import Scientist from './Components/UI/Scientist';
+import Layman from './Components/UI/Layman';
 
 const App = () => {
 	return (
@@ -20,6 +22,8 @@ const App = () => {
 						<BrowserRouter>
 							<Switch>
 								<Route exact path='/' component={Homepage} />
+								<Route exact path='/scientist' component={Scientist} />
+								<Route exact path='/layman' component={Layman} />
 								<Route
 									exact
 									path='/statewisedetails'
