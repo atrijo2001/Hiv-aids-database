@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid, Paper, Typography, Button } from '@material-ui/core';
+import { Container, Grid, Typography, Button } from '@material-ui/core';
 import './Homepage.css';
 import { useHistory } from 'react-router-dom';
+import Footer from './Footer';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -22,18 +23,24 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '15px',
 		width: '20vh',
 	},
+	paragraph: {
+		color: '#ffffff',
+		fontFamily: 'Abril Fatface',
+		marginTop: theme.spacing(6),
+		paddingBottom: theme.spacing(5),
+	},
 }));
 
 const Homepage = () => {
-    const classes = useStyles();
-    const history = useHistory();
+	const classes = useStyles();
+	const history = useHistory();
 
-    const handleChangeScientist = () => {
-        history.push('/scientist')
-    }
-    const handleChangeLayman = () => {
-			history.push('/layman');
-		};
+	const handleChangeScientist = () => {
+		history.push('/scientist');
+	};
+	const handleChangeLayman = () => {
+		history.push('/layman');
+	};
 
 	return (
 		<>
@@ -59,8 +66,22 @@ const Homepage = () => {
 							Layman
 						</Button>
 					</Grid>
+					<Grid xs={12} sm={6}>
+						<Typography
+							variant='subtitle1'
+							id='para'
+							className={classes.paragraph}
+						>
+							The HIV/AIDS Database is a compilation of information from widely
+							scattered small-scale surveys on the AIDS pandemic and HIV
+							seroprevalence (infection) in population groups in developing
+							countries. The informations are retrieved from NCBI, ClinVar,
+							Stanford, etc.
+						</Typography>
+					</Grid>
 				</Container>
 			</Grid>
+			<Footer />
 		</>
 	);
 };
