@@ -1,10 +1,44 @@
-*{
-    overflow-y: hidden;
-}
 .bg {
 	background: url('https://i.imgur.com/xpVZvLA.png');
-	height: 100vh;
+	height: 88vh;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+#para{
+	color: #000;
+}
+@media (min-width: 768px) {
+	* {
+		overflow-y: hidden;
+	}
+	.bg{
+		height: 84vh;
+	}
+}
+@media(min-width:960px){
+	#para{
+		color: #fff !important;
+	}
+	.bg{
+		height: 86vh;
+	}
+}
+@media (max-width:576px) {
+	.bg{
+		height: 100%;
+		margin-top: -23%;
+	}
+}
+@media (max-width:400px) {
+	.bg{
+		height: 100%;
+		margin-top: -26%;
+	}
+}
+@media (max-width:320px) {
+	.bg{
+		height: 100%;
+		margin-top: -30%;
+	}
 }
