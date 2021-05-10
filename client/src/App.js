@@ -18,7 +18,7 @@ const App = () => {
 		<StateState>
 			<DetailsState>
 				<DrugState>
-					<ProteinState>
+					<ProteinState>	
 						<BrowserRouter>
 							<Switch>
 								<Route exact path='/' component={Homepage} />
@@ -29,10 +29,10 @@ const App = () => {
 									path='/statewisedetails'
 									component={StateWiseDetails}
 								/>
-								<Route exact path='/getalldrugs' component={GetAllDrugs} />
+								<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
 								<Route
 									exact
-									path='/getallproteins'
+									path='/scientist/getallproteins'
 									component={GetAllProteins}
 								/>
 							</Switch>
