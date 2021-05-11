@@ -13,7 +13,6 @@ const useStyles = makeStyles(() => ({
 }));
 const DrugComp = ({drug}) => {
     const classes = useStyles()
-    console.log(drug)
     return (
         <div className="bg" style={{overflow: 'auto', background: 'chocolate'}}>
             <Container>
