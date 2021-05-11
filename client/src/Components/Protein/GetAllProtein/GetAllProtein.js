@@ -7,9 +7,9 @@ import Footer from '../../UI/Footer';
 import ProteinComp from './ProteinComp';
 
 import { TextField, Container, Card, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 	title: {
 		fontFamily: 'Bowlby One SC',
 		color: '#000000',
@@ -20,9 +20,13 @@ const useStyles = makeStyles(() => ({
 		width: '40%',
 		marginRight: '0.5rem',
 		color: '#fff',
+		marginTop: theme.spacing(2),
+	},
+	input: {
+		backgroundColor: 'white',
 	},
 	cardStyles: {
-        marginTop: '0.5rem',
+		margin: theme.spacing(2),
 	},
 }));
 
@@ -41,7 +45,11 @@ const GetAllProtein = () => {
 	}, [pdb, structure]);
 
 	return (
-		<div className={classes.background}>
+		<div
+			style={{
+				background: 'linear-gradient(90deg, #221E1B -1.67%, #262320 98.54%)',
+			}}
+		>
 			<Header />
 			<Container>
 				<div style={{ textAlign: 'center' }}>
@@ -51,6 +59,9 @@ const GetAllProtein = () => {
 						variant='outlined'
 						label='PDB Accession Id'
 						onChange={(e) => setPdb(e.target.value)}
+						InputProps={{
+							className: classes.input,
+						}}
 					/>
 					<TextField
 						className={classes.text}
@@ -58,14 +69,15 @@ const GetAllProtein = () => {
 						variant='outlined'
 						label='Structure'
 						onChange={(e) => setStructure(e.target.value)}
+						InputProps={{
+							className: classes.input,
+						}}
 					/>
 				</div>
 				{!loading && !error && allProteins
 					? allProteins.map((protein, key) => (
 							<Card className={classes.cardStyles}>
-								<Typography variant='subtitle2'>
 									<ProteinComp key={key} protein={protein} />
-								</Typography>
 							</Card>
 					  ))
 					: ''}
