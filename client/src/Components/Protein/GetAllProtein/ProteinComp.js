@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Card, Typography, Container} from "@material-ui/core"
+import {Card, Typography, Container, Grid} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
 
 const useStyles = makeStyles(() => ({
@@ -14,11 +14,15 @@ const useStyles = makeStyles(() => ({
 
 const ProteinComp = ({protein}) => {
     const classes = useStyles()
-    const {pdbAccessionId} = protein
-    console.log(pdbAccessionId)
+    const {pdbAccessionId, image, macromolecules, method, organism, releaseDate, structureDetails, uniqueLigands, organism} = protein
+    console.log(protein)
     return (
         <>
-                        <Typography variant='h5' className={classes.title}>Name: {protein.organism}</Typography>
+                        <Typography variant='h5' className={classes.title}>Name: {organism}</Typography>
+                        <Grid>
+
+                        </Grid>
+                        <Typography variant='p'></Typography>
         </>
     )
 }

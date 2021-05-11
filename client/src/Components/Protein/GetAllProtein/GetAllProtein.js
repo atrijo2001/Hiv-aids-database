@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import ProteinContext from "../../../context/ProteinContext/ProteinContext";
-import Spinner from "../../UI/Spinner"
+import React, { useContext, useEffect, useState } from 'react';
+import ProteinContext from '../../../context/ProteinContext/ProteinContext';
+import Spinner from '../../UI/Spinner';
 
-import Header from "../../UI/Header";
-import Footer from "../../UI/Footer";
-import ProteinComp from "./ProteinComp"
+import Header from '../../UI/Header';
+import Footer from '../../UI/Footer';
+import ProteinComp from './ProteinComp';
 
-import {TextField, Container, Card} from "@material-ui/core"
-import {makeStyles} from "@material-ui/core/styles"
+import { TextField, Container, Card, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import styles from "./Proteins.module.css"
 
@@ -33,8 +33,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const GetAllProtein = () => {
+	const classes = useStyles();
 
-    const classes = useStyles()
 
 
     const proteinContext = useContext(ProteinContext);
@@ -50,12 +50,12 @@ const GetAllProtein = () => {
 
 
     return (
-        <div className={styles.sb}>
+        <div className={styles.sb} style={{background: 'linear-gradient(90deg, #221E1B -1.67%, #262320 98.54%)'}}>
         <Header/>
             <Container>
-                <div style={{textAlign: 'center', background: 'linear-gradient(90deg, #221E1B -1.67%, #262320 98.54%)'}}>
-                    <TextField className={classes.text} id="pdb" label="PDB Accession Id" onChange={(e)=> setPdb(e.target.value)}/>
-                    <TextField className={classes.text} id="structure" label="Structure" onChange={(e)=> setStructure(e.target.value)}/>
+                <div style={{textAlign: 'center'}}>
+                    <TextField variant='filled' className={classes.text} id="pdb" label="PDB Accession Id" onChange={(e)=> setPdb(e.target.value)}/>
+                    <TextField variant='filled' className={classes.text} id="structure" label="Structure" onChange={(e)=> setStructure(e.target.value)}/>
                 </div>
                     {!loading && !error && allProteins? allProteins.map((protein, key)=><Card className={classes.cardStyles}><ProteinComp key={key} protein={protein}/></Card>):<Spinner/>}
             </Container>
