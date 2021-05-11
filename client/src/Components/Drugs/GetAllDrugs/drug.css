@@ -1,6 +1,5 @@
 .bg{
-    background: url('../../../Images/brown_ribbon.png');
-    height: 85vh;
+    background: url('../../../Images/brown_ribbon.png') ;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

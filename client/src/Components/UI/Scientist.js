@@ -40,6 +40,11 @@ const Scientist = () => {
     const handleDrugs = () => {
         history.push('/scientist/getalldrugs')
     }
+
+    //Navigate to the proteins page
+    const handleProteins = () => {
+        history.push('/scientist/getallproteins')
+    }
     return (
         <div>
             <Header/>
@@ -59,7 +64,7 @@ const Scientist = () => {
                             <Button className={classes.button}>Gene</Button>
                         </Grid>
                         <Grid md={12}>
-                            <Button className={classes.button}>Protein</Button>
+                            <Button className={classes.button} onClick={handleProteins}>Protein</Button>
                         </Grid>
                     </div>
                 </Container>
