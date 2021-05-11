@@ -43,7 +43,7 @@ const Homepage = () => {
 	};
 
 	return (
-		<>
+		<div>
 			<Header />
 			<Grid className='bg'>
 				<Container>
@@ -82,7 +82,7 @@ const Homepage = () => {
 				</Container>
 			</Grid>
 			<Footer />
-		</>
+		</div>
 	);
 };
 
