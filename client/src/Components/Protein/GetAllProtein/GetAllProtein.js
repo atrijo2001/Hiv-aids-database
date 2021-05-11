@@ -33,7 +33,16 @@ const useStyles = makeStyles((theme) => ({
 const GetAllProtein = () => {
 	const classes = useStyles();
 
+	const proteinContext = useContext(ProteinContext);
+	const { allProteins, error, FetchProteins } = proteinContext;
+	const [pdb, setPdb] = useState('');
+	const [structure, setStructure] = useState('');
+	const [loading, setLoading] = useState(true);
 
+	useEffect(() => {
+		FetchProteins(pdb, structure);
+		setLoading(false);
+	}, [pdb, structure]);
 
 	return (
 		<div
@@ -78,4 +87,4 @@ const GetAllProtein = () => {
 	);
 };
 
-export default GetAllProtein
+export default GetAllProtein;
