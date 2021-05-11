@@ -29,6 +29,9 @@
 		height: 100%;
 		margin-top: -23%;
 	}
+	.image{
+		width: 100% !important;
+	}
 }
 @media (max-width:400px) {
 	.bg{

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
-import './Homepage.css';
+import '../../App.css';
 import { useHistory } from 'react-router-dom';
 import Footer from './Footer';
 
