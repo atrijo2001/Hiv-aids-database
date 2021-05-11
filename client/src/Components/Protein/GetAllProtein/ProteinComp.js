@@ -18,9 +18,7 @@ const ProteinComp = ({protein}) => {
     console.log(pdbAccessionId)
     return (
         <>
-                <div>
                         <Typography variant='h5' className={classes.title}>Name: {protein.organism}</Typography>
-                </div>
         </>
     )
 }
