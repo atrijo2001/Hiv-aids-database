@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Typography, Card} from "@material-ui/core"
+import {Typography} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
 
 
@@ -14,10 +14,7 @@ const useStyles = makeStyles(() => ({
 const DrugComp = ({drug}) => {
     const classes = useStyles()
     return (
-        <div className="bg" style={{overflow: 'auto', background: 'chocolate'}}>
-            <Container>
-                <div style={{textAlign: 'center', marginTop: '1rem'}}>
-                    <Card>
+        <div className="bg" style={{background: 'chocolate'}}>
                         <Typography variant='h5' className={classes.title}>Name: {drug.name}</Typography>
                         <Typography paragraph={true} >Interactions: {drug.interactions}</Typography>
                         <Typography variant='body1' className={classes.title}>Pubmed Links:</Typography>
@@ -31,9 +28,6 @@ const DrugComp = ({drug}) => {
                         <Typography variant='body1'>{drug.target}</Typography>
                         <Typography variant='body1' className={classes.title}>Uses:</Typography>
                         <Typography variant='body1'>{drug.uses}</Typography>
-                    </Card>
-                </div>
-            </Container>
         </div>        
     )
 }

@@ -3,6 +3,7 @@ import  DetailsState from "./context/DetailsContext/DetailsState"
 import DrugState from "./context/DrugsContext/DrugsState"
 import ProteinState from "./context/ProteinContext/ProteinState"
 import GeneState from "./context/GeneContext/GeneState"
+import BioModelState from "./context/BioModelContext/BioModelContext"
 
 import StateWiseDetails from './Components/DetailsWise/StateWiseDetails/StateWiseDetails';
 import GetAllDrugs from './Components/Drugs/GetAllDrugs/GetAllDrugs';
@@ -19,24 +20,28 @@ const App = () => {
 			<DetailsState>
 				<DrugState>
 					<ProteinState>	
-						<BrowserRouter>
-							<Switch>
-								<Route exact path='/' component={Homepage} />
-								<Route exact path='/scientist' component={Scientist} />
-								<Route exact path='/layman' component={Layman} />
-								<Route
-									exact
-									path='/statewisedetails'
-									component={StateWiseDetails}
-								/>
-								<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
-								<Route
-									exact
-									path='/scientist/getallproteins'
-									component={GetAllProteins}
-								/>
-							</Switch>
-						</BrowserRouter>
+						<GeneState>
+							<BioModelState>
+								<BrowserRouter>
+									<Switch>
+										<Route exact path='/' component={Homepage} />
+										<Route exact path='/scientist' component={Scientist} />
+										<Route exact path='/layman' component={Layman} />
+										<Route
+											exact
+											path='/statewisedetails'
+											component={StateWiseDetails}
+										/>
+										<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
+										<Route
+											exact
+											path='/scientist/getallproteins'
+											component={GetAllProteins}
+										/>
+									</Switch>
+								</BrowserRouter>
+							</BioModelState>
+						</GeneState>
 					</ProteinState>
 				</DrugState>
 			</DetailsState>
