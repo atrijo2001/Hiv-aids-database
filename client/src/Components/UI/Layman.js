@@ -10,6 +10,7 @@ import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
+import './scientist-layman.css'
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -31,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'rgba(0,0,0,0.6)',
 		color: '#fff',
 	},
+	headerTitle: {
+		fontFamily: 'Bowlby One SC',
+		textAlign:'center'
+	},
 	text: {
 		fontFamily: 'Abril Fatface',
 	},
@@ -39,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#000000',
 		color: '#ffffff',
 		padding: theme.spacing(3),
+		marginLeft: '20.5%',
 		margin: theme.spacing(5),
-		marginLeft: theme.spacing(5),
 		borderRadius: '15px',
 		width: '25vh',
 	},
@@ -49,15 +54,19 @@ const useStyles = makeStyles((theme) => ({
 const Layman = () => {
 	const classes = useStyles();
 	return (
-		<div>
+		<div className='background'>
 			<Header />
 			<Typography variant='h4' className={classes.title}>
 				India fights hiv/aids
 			</Typography>
 			<Grid container>
 				<Grid item xs={12} sm={4} className={classes.item}>
-					<Card>
-						<CardHeader className={classes.cardHeader} title='India | UNAIDS' />
+					<Card style={{ backgroundColor: 'transparent' }}>
+						<CardHeader
+							className={classes.cardHeader}
+							title='India | UNAIDS'
+							classes={{ title: classes.headerTitle }}
+						/>
 						<CardContent className={classes.cardContent}>
 							<Typography className={classes.text}>
 								India has the third largest HIV epidemic in the world, with 2.1
@@ -69,10 +78,11 @@ const Layman = () => {
 					</Card>
 				</Grid>
 				<Grid item xs={12} sm={4} className={classes.item}>
-					<Card>
+					<Card style={{ backgroundColor: 'transparent' }}>
 						<CardHeader
 							className={classes.cardHeader}
 							title='AIDS in India - NCBI - NIH'
+							classes={{ title: classes.headerTitle }}
 						/>
 						<CardContent className={classes.cardContent}>
 							<Typography className={classes.text}>
@@ -85,8 +95,12 @@ const Layman = () => {
 					</Card>
 				</Grid>
 				<Grid item xs={12} sm={4} className={classes.item}>
-					<Card>
-						<CardHeader className={classes.cardHeader} title='NACO' />
+					<Card style={{ backgroundColor: 'transparent' }}>
+						<CardHeader
+							className={classes.cardHeader}
+							title='NACO'
+							classes={{ title: classes.headerTitle }}
+						/>
 						<CardContent className={classes.cardContent}>
 							<Typography className={classes.text}>
 								As per the recently released, India HIV Estimation 2019 report,
