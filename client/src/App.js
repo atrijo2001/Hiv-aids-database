@@ -20,7 +20,7 @@ const App = () => {
 		<StateState>
 			<DetailsState>
 				<DrugState>
-					<ProteinState>	
+					<ProteinState>
 						<GeneState>
 							<BioModelState>
 								<BrowserRouter>
