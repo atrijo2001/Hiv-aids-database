@@ -23,23 +23,23 @@ const App = () => {
 						<GeneState>
 							<BioModelState>
 								<BrowserRouter>
-									<Switch>
-										<Route exact path='/' component={Homepage} />
-										<Route exact path='/scientist' component={Scientist} />
-										<Route exact path='/layman' component={Layman} />
-										<Route
-											exact
-											path='/statewisedetails'
-											component={StateWiseDetails}
-										/>
-										<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
-										<Route
-											exact
-											path='/scientist/getallproteins'
-											component={GetAllProteins}
-										/>
-									</Switch>
-								</BrowserRouter>
+								<Switch>
+									<Route exact path='/' component={Homepage} />
+									<Route exact path='/scientist' component={Scientist} />
+									<Route exact path='/layman' component={Layman} />
+									<Route
+										exact
+										path='/statewisedetails'
+										component={StateWiseDetails}
+									/>
+									<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
+									<Route
+										exact
+										path='/scientist/getallproteins'
+										component={GetAllProteins}
+									/>
+								</Switch>
+							</BrowserRouter>
 							</BioModelState>
 						</GeneState>
 					</ProteinState>
