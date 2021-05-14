@@ -35,7 +35,5 @@ export default (state, action) => {
                 ...state,
                 error: undefined
             }
-        default:
-            break;
     }
 }

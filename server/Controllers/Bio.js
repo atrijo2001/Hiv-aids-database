@@ -14,7 +14,15 @@ exports.createModel = async(req, res) => {
 
 exports.getAllResults = async(req, res) => {
     try {
-        const biomodel = await Bio.find({});
+
+        //Build Query
+        const queryObj = {...req.query}
+        const excludedFields = ['page', 'sort', 'limit', 'fields']
+        excludedFields.forEach(el => delete queryObj[el])
+        const query = Bio.find(queryObj)
+
+        //ERxecute Query
+        const biomodel = await query
         res.status(200).json(biomodel)
     } catch (error) {
         res.status(404).json({message: "Couldnt get data"})

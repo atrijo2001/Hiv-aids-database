@@ -42,7 +42,7 @@ const BioModelState = (props) => {
         } catch (err) {
            dispatch({
                type: BIOMODEL_GENESYMBOL_FAILED,
-               payload: data
+               payload: err
            })   
         }
     }

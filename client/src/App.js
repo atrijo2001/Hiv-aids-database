@@ -3,11 +3,12 @@ import  DetailsState from "./context/DetailsContext/DetailsState"
 import DrugState from "./context/DrugsContext/DrugsState"
 import ProteinState from "./context/ProteinContext/ProteinState"
 import GeneState from "./context/GeneContext/GeneState"
-import BioModelState from "./context/BioModelContext/BioModelContext"
+import BioModelState from "./context/BioModelContext/BioModelState"
 
-import StateWiseDetails from './Components/DetailsWise/StateWiseDetails/StateWiseDetails';
+import StateWiseCases from "./Components/StateWise/StateWiseCases"
 import GetAllDrugs from './Components/Drugs/GetAllDrugs/GetAllDrugs';
 import GetAllProteins from './Components/Protein/GetAllProtein/GetAllProtein';
+import GetBioModel from "./Components/BioModel/GetBiomodel/GetBiomodel";
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Homepage from './Components/UI/Homepage';
@@ -29,8 +30,8 @@ const App = () => {
 									<Route exact path='/layman' component={Layman} />
 									<Route
 										exact
-										path='/statewisedetails'
-										component={StateWiseDetails}
+										path='/layman/statewisedetails'
+										component={StateWiseCases}
 									/>
 									<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
 									<Route
@@ -38,6 +39,7 @@ const App = () => {
 										path='/scientist/getallproteins'
 										component={GetAllProteins}
 									/>
+									<Route exact path='/scientist/getbiomodel' component={GetBioModel}/>
 								</Switch>
 							</BrowserRouter>
 							</BioModelState>
