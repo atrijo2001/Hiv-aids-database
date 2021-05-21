@@ -9,6 +9,8 @@ import ProteinComp from './ProteinComp';
 import { TextField, Container, Card, Typography } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
+import ProteinFilter from "./ProteinFilter"
+
 const useStyles = makeStyles((theme) => ({
 	title: {
 		fontFamily: 'Bowlby One SC',
@@ -34,7 +36,7 @@ const GetAllProtein = () => {
 	const classes = useStyles();
 
 	const proteinContext = useContext(ProteinContext);
-	const { allProteins, error, FetchProteins } = proteinContext;
+	const { allProteins, error, FetchProteins, filtered} = proteinContext;
 	const [pdb, setPdb] = useState('');
 	const [structure, setStructure] = useState('');
 	const [loading, setLoading] = useState(true);
@@ -63,7 +65,7 @@ const GetAllProtein = () => {
 							className: classes.input,
 						}}
 					/>
-					<TextField
+					{/* <TextField
 						className={classes.text}
 						id='structure'
 						variant='outlined'
@@ -72,15 +74,20 @@ const GetAllProtein = () => {
 						InputProps={{
 							className: classes.input,
 						}}
-					/>
+					/> */}
+					<ProteinFilter/>
 				</div>
-				{!loading && !error && allProteins
-					? allProteins.map((protein, key) => (
+				{!loading && !error && filtered!==null
+					? filtered.map((protein, key) => (
 							<Card className={classes.cardStyles}>
 									<ProteinComp key={key} protein={protein} />
 							</Card>
 					  ))
-					: ''}
+					: allProteins.map((protein, key) => (
+						<Card className={classes.cardStyles}>
+								<ProteinComp key={key} protein={protein} />
+						</Card>
+				  ))}
 			</Container>
 			<Footer />
 		</div>

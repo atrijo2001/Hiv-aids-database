@@ -1,4 +1,4 @@
-import {PROTEIN_ADD_FAILED, PROTEIN_ADD_SUCCESS, PROTEIN_FETCH_FAILED, PROTEIN_FETCH_SUCCESS, PROTEIN_ID_FAILED, PROTEIN_ID_SUCCESS} from "../types"
+import {CLEAR_FILTER ,FILTER_PROTEIN ,PROTEIN_ADD_FAILED, PROTEIN_ADD_SUCCESS, PROTEIN_FETCH_FAILED, PROTEIN_FETCH_SUCCESS, PROTEIN_ID_FAILED, PROTEIN_ID_SUCCESS} from "../types"
 
 export default (state, action) => {
     switch (action.type) {
@@ -36,5 +36,19 @@ export default (state, action) => {
                 ...state,
                 error: action.payload
             }
+        case FILTER_PROTEIN:
+            return{
+                ...state,
+                filtered: state.allProteins.filter(protein => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return protein.structureDetails.match(regex);
+                })
+            }
+        case CLEAR_FILTER:
+            return{
+                ...state,
+                filtered: null
+            }
+
     }
 }
