@@ -23,7 +23,6 @@ const ProteinComp = ({ protein }) => {
 		structureDetails,
 		uniqueLigands,
 	} = protein;
-	console.log(protein);
 	return (
 		<>
 			<div>

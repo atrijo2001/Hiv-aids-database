@@ -14,7 +14,6 @@ const ProteinFilter = () => {
     const onChange = e => {
         if (text.current.value !== '') {
           filterProteins(e.target.value);
-          console.log(filtered)
         } else {
           clearFilter();
         }

@@ -10,6 +10,7 @@ import GetAllDrugs from './Components/Drugs/GetAllDrugs/GetAllDrugs';
 import GetAllProteins from './Components/Protein/GetAllProtein/GetAllProtein';
 import GetBioModel from "./Components/BioModel/GetBiomodel/GetBiomodel";
 import AddProteins from "./Components/Protein/AddProtein/AddProteins"
+import StateChart from "./Components/StateWise/StateChart"
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Homepage from './Components/UI/Homepage';
@@ -34,6 +35,11 @@ const App = () => {
 										exact
 										path='/layman/statewisedetails'
 										component={StateWiseCases}
+									/>
+									<Route
+										exact
+										path='/layman/statewisedetails/:id'
+										component={StateChart}
 									/>
 									<Route exact path='/layman/statewisecasedetails' component={AllDetails}/>
 									<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
