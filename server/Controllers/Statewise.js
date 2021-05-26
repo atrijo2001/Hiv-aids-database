@@ -51,3 +51,12 @@ exports.getCasesDanger = async(req, res) => {
         res.status(404).json({message: "Couldnt find state"})
     }
 }
+
+exports.getCaseByStateId = async(req, res) => {
+    try {
+        const ById= await Statewise.findById(req.params.id).exec()
+        res.status(200).json(ById)
+    } catch (err) {
+        res.status(404).json({message: "Couldnt find state"})
+    }
+}

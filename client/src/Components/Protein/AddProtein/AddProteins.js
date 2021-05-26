@@ -7,8 +7,10 @@ import {ErrorMessage, Field, Form, Formik, FieldArray} from "formik"
 import * as Yup from "yup"
 import ProteinContext from "../../../context/ProteinContext/ProteinContext"
 import { useContext } from "react"
+import {useHistory} from "react-router-dom"
 
 const AddProteins = () => {
+    const history = useHistory()
     const proteinContext = useContext(ProteinContext)
     const {AddProtein} = proteinContext
     const initialValues = {
@@ -16,32 +18,16 @@ const AddProteins = () => {
         structureDetails: "",
         releaseDate: "",
         method: "",
+        organism: "",
         macromolecules: [""],
         uniqueLigands: "",
         image: ""
     }
 
     //Call the add Protein function on submit
-    const onSubmit = async(values) => {
-        let data = {
-            // pdbAccessionId: values.pdbAccessionId,
-            // structureDetails: values.structureDetails,
-            // releaseDate: values.releaseDate,
-            // method: values.method,
-            // macromolecules: values.macromolecules,
-            // uniqueLigands: values.uniqueLigands,
-            // image: values.image
-            pdbAccessionId: "1JLC",
-            structureDetails: "CRYSTAL STRUCTURE OF Y181C MUTANT HIV-1 REVERSE TRANSCRIPTASE IN COMPLEX WITH PETT-2",
-            releaseDate: "2001-10-03",
-            method: "X-RAY DIFFRACTION 3 Å",
-            organism: "HIV-1 M:B_HXB2R",
-            macromolecules: ["HIV-1 RT A-chain (protein)","HIV-1 RT B-chain (protein)"],
-            uniqueLigands: "FTC",
-            image: "https://cdn.rcsb.org/images/structures/jl/1jlc/1jlc_assembly-1.jpeg"
-        }
-        const res = await AddProtein(data)
-        console.log(res)
+    const onSubmit = (values) => {
+        AddProtein(values)
+        history.push('/')
     }
 
     //Validate the values
@@ -50,7 +36,8 @@ const AddProteins = () => {
         structureDetails: Yup.string().required('Required'),
         method: Yup.string().required('Required'),
         uniqueLigands: Yup.string().required('Required'),
-        image: Yup.string().required('Required')
+        image: Yup.string().required('Required'),
+        organism: Yup.string().required('Required')
     })
     return (
         <div>
@@ -77,6 +64,11 @@ const AddProteins = () => {
                         <label htmlFor="method">Method:</label>
                         <Field type="text" id="method" name="method"/>
                         <ErrorMessage name="method" component={TextError}/>
+                    </div>
+                    <div className="form-aontrol">
+                        <label htmlFor="organism">organism:</label>
+                        <Field type="text" id="organism" name="organism"/>
+                        <ErrorMessage name="organism" component={TextError}/>
                     </div>
 
                <FieldArray name="macromolecules">

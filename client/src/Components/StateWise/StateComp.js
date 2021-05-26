@@ -1,7 +1,9 @@
 import React from 'react'
+import StateChart from "./StateChart"
 
 import {Typography, CardContent, Button} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
+import {Link} from "react-router-dom"
 
 
 const useStyles = makeStyles(() => ({
@@ -19,8 +21,8 @@ const useStyles = makeStyles(() => ({
 
 
 const StateComp = ({state}) => {
+    const {_id} = state
     const classes = useStyles()
-    console.log(state)
     return (
         <CardContent>
             <div style={{textAlign: 'center'}}>
@@ -30,7 +32,9 @@ const StateComp = ({state}) => {
                <br />
                <Typography variant='p'>Deaths: {state.deaths}</Typography>
                <br />
-               <Button className={classes.button}>More Details</Button>
+               <Link to={`/layman/statewisedetails/${_id}`}>
+                   <Button className={classes.button}>More Details</Button>
+               </Link>
             </div>
         </CardContent>
     )

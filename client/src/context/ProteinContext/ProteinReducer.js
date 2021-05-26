@@ -41,7 +41,7 @@ export default (state, action) => {
                 ...state,
                 filtered: state.allProteins.filter(protein => {
                     const regex = new RegExp(`${action.payload}`, 'gi');
-                    return protein.structureDetails.match(regex);
+                    return protein.structureDetails.match(regex) || protein.pdbAccessionId.match(regex);
                 })
             }
         case CLEAR_FILTER:

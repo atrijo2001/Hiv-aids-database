@@ -17,7 +17,7 @@ const gene = require('./Routes/Gene');
 const drug = require('./Routes/Drugs');
 
 app.use(express.json());
-app.use(cors({origin: "http://localhost:3000"}))
+app.use(cors())
 
 const connDB = async () =>{
    try {
