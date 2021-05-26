@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 		width:'100%',
 		left: 0,
 		bottom: 0,
+		marginTop: '1rem'
 	},
 }));
 

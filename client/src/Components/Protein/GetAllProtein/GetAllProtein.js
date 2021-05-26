@@ -65,16 +65,6 @@ const GetAllProtein = () => {
 							className: classes.input,
 						}}
 					/>
-					{/* <TextField
-						className={classes.text}
-						id='structure'
-						variant='outlined'
-						label='Structure'
-						onChange={(e) => setStructure(e.target.value)}
-						InputProps={{
-							className: classes.input,
-						}}
-					/> */}
 					<ProteinFilter/>
 				</div>
 				{!loading && !error && filtered!==null

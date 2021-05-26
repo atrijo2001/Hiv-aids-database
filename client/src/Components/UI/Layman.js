@@ -58,6 +58,12 @@ const Layman = () => {
 	const handleStatewise = () => {
         history.push('/layman/statewisedetails')
 	}
+
+	const handleDetails = () => {
+		history.push('/layman/statewisecasedetails')
+	}
+
+
 	return (
 		<div className='background'>
 			<Header />
@@ -122,7 +128,7 @@ const Layman = () => {
 					<Button onClick={handleStatewise} className={classes.button}>Statewise cases</Button>
 				</Grid>
 				<Grid item xs={12} sm={6}>
-					<Button className={classes.button}>More detailed analysis</Button>
+					<Button onClick={handleDetails} className={classes.button}>More detailed analysis</Button>
 				</Grid>
 			</Grid>
 			<Footer />

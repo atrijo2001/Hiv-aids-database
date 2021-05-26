@@ -14,6 +14,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Homepage from './Components/UI/Homepage';
 import Scientist from './Components/UI/Scientist';
 import Layman from './Components/UI/Layman';
+import AllDetails from "./Components/DetailsWise/AllDetails"
 
 const App = () => {
 	return (
@@ -33,6 +34,7 @@ const App = () => {
 										path='/layman/statewisedetails'
 										component={StateWiseCases}
 									/>
+									<Route exact path='/layman/statewisecasedetails' component={AllDetails}/>
 									<Route exact path='/scientist/getalldrugs' component={GetAllDrugs} />
 									<Route
 										exact

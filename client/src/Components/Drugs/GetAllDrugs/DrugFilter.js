@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import ProteinContext from "../../../context/ProteinContext/ProteinContext"
+import DrugContext from "../../../context/DrugsContext/DrugsContext"
 
-const ProteinFilter = () => {
-    const proteinContext = useContext(ProteinContext);
-    const {filtered, filterProteins, clearFilter} = proteinContext
+const DrugFilter = () => {
+    const drugContext = useContext(DrugContext);
+    const {filtered, filterDrugs, clearFilter} = drugContext
     const text = useRef('');
     useEffect(()=>{
         if (filtered === null) {
@@ -13,7 +13,7 @@ const ProteinFilter = () => {
 
     const onChange = e => {
         if (text.current.value !== '') {
-          filterProteins(e.target.value);
+          filterDrugs(e.target.value);
           console.log(filtered)
         } else {
           clearFilter();
@@ -28,11 +28,11 @@ const ProteinFilter = () => {
               borderRadius: '12px'}}
         ref={text}
         type='text'
-        placeholder='Filter Proteins...'
+        placeholder='Filter Drugs...'
         onChange={onChange}
       />
     </form>
     )
 }
 
-export default ProteinFilter
+export default DrugFilter

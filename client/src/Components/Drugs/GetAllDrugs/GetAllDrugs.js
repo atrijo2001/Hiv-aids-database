@@ -5,6 +5,7 @@ import Spinner from "../../UI/Spinner"
 import DrugComp from "./DrugComp"
 import Header from "../../UI/Header";
 import Footer from "../../UI/Footer";
+import DrugFilter from "./DrugFilter"
 
 import {Container, Card} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() => ({
 
 const GetAllDrugs = () => {
     const drugContext = useContext(DrugsContext);
-    const {alldrugs, FetchDrugs} = drugContext;
+    const {alldrugs, FetchDrugs, filtered} = drugContext;
 
     const classes = useStyles()
 
@@ -29,7 +30,8 @@ const GetAllDrugs = () => {
         <div style={{background: 'linear-gradient(90deg, #221E1B -1.67%, #262320 98.54%)'}}>
             <Header/>
             <Container>
-                {alldrugs? alldrugs.map((drug, key)=>
+            <DrugFilter/>
+                {filtered!==null? filtered.map((drug, key)=>
                 <Container>
                     <div style={{textAlign: 'center', marginTop: '1rem'}}>
                         <Card className={classes.cardStyles}>
@@ -37,7 +39,14 @@ const GetAllDrugs = () => {
                         </Card>
                     </div>
                 </Container>
-                ):<Spinner/>}
+                ):alldrugs.map((drug, key)=>
+                <Container>
+                    <div style={{textAlign: 'center', marginTop: '1rem'}}>
+                        <Card className={classes.cardStyles}>
+                            <DrugComp key={key} drug={drug}/>
+                        </Card>
+                    </div>
+                </Container>)}
             </Container>
             <Footer/>
         </div>

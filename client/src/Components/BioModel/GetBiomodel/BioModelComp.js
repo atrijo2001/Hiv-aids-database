@@ -23,7 +23,7 @@ const BioModelComp = ({biomodel}) => {
                 <Typography variant='p'>Var Id: {varId}</Typography>
                 <br/>
                 <h3 style={{textAlign: 'center', marginBottom: '1px'}}>Gene Information</h3>
-                <Typography variant='p'>Fyll Name: {fullName}</Typography>
+                <Typography variant='p'>Full Name: {fullName}</Typography>
                 <br />
                 <Typography variant='p'>Gene Type: {geneType}</Typography>
                 <br />
