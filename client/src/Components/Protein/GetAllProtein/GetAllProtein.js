@@ -5,12 +5,13 @@ import Header from '../../UI/Header';
 import Footer from '../../UI/Footer';
 import ProteinComp from './ProteinComp';
 
-import { TextField, Container, Card, Button } from '@material-ui/core';
+import { Container, Card, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {useHistory} from "react-router-dom"
 
 import ProteinFilter from "./ProteinFilter"
+import Pagination from "./Pagination"
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -45,6 +46,8 @@ const GetAllProtein = () => {
 	const proteinContext = useContext(ProteinContext);
 	const { allProteins, error, FetchProteins, filtered} = proteinContext;
 	const [loading, setLoading] = useState(true);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [proteinPerPage] = useState(5);
 
 	const onClick = () => {
 		history.push('/scientist/addprotein')
@@ -54,6 +57,15 @@ const GetAllProtein = () => {
 		FetchProteins();
 		setLoading(false);
 	}, []);
+
+	//Pagination Logic
+	//Get current page
+	const indexOfLastProtein = currentPage * proteinPerPage
+	const indexOfFirstProtein = indexOfLastProtein - proteinPerPage
+	const currentProtein = allProteins.slice(indexOfFirstProtein, indexOfLastProtein)
+
+	//Change Page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 	return (
 		<div
@@ -73,11 +85,12 @@ const GetAllProtein = () => {
 									<ProteinComp key={key} protein={protein} />
 							</Card>
 					  ))
-					: allProteins.map((protein, key) => (
+					: currentProtein.map((protein, key) => (
 						<Card className={classes.cardStyles}>
 								<ProteinComp key={key} protein={protein} />
 						</Card>
 				  ))}
+				  <Pagination proteinsPerPage={proteinPerPage} totalProteins={allProteins.length} paginate={paginate}/>
 			</Container>
 			<Footer />
 		</div>
