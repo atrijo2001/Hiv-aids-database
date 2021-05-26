@@ -10,7 +10,7 @@ import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
-import './scientist-layman.css'
+import {useHistory} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -53,6 +53,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Layman = () => {
 	const classes = useStyles();
+	const history = useHistory();
+
+	const handleStatewise = () => {
+        history.push('/layman/statewisedetails')
+	}
+
+	const handleDetails = () => {
+		history.push('/layman/statewisecasedetails')
+	}
+
+
 	return (
 		<div className='background'>
 			<Header />
@@ -114,10 +125,10 @@ const Layman = () => {
 			</Grid>
 			<Grid container>
 				<Grid item xs={12} sm={6}>
-					<Button className={classes.button}>Statewise cases</Button>
+					<Button onClick={handleStatewise} className={classes.button}>Statewise cases</Button>
 				</Grid>
 				<Grid item xs={12} sm={6}>
-					<Button className={classes.button}>More detailed analysis</Button>
+					<Button onClick={handleDetails} className={classes.button}>More detailed analysis</Button>
 				</Grid>
 			</Grid>
 			<Footer />

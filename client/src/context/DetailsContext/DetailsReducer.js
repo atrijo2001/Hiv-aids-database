@@ -1,4 +1,4 @@
-import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_SUCCESS, PARTICULAR_DETAILS_FAILED, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS} from "../types"
+import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_SUCCESS, PARTICULAR_DETAILS_FAILED, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS, FILTER_DETAILS, CLEAR_FILTER} from "../types"
 
 export default (state, action) => {
     switch (action.type) {
@@ -35,5 +35,19 @@ export default (state, action) => {
                 ...state,
                 errors: action.payload
             }
+        case FILTER_DETAILS:
+            return{
+                ...state,
+                filtered: state.stateWiseDetails.filter(detail => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return detail.state.match(regex);
+                })
+            }
+        case CLEAR_FILTER:
+            return{
+                ...state,
+                filtered: null
+            }
+        
     }
 }

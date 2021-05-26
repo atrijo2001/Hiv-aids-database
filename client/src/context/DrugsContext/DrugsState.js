@@ -1,14 +1,15 @@
 import React, {useReducer} from 'react';
 import DrugsContext from "../DrugsContext/DrugsContext";
 import DrugsReducer from "../DrugsContext/DrugsReducer";
-import {DRUG_FETCH_FAILED, DRUG_FETCH_SUCCESS, DRUG_BYID_FAILED, DRUG_BYID_SUCCESS, DRUG_ADD_FAILED, DRUG_ADD_SUCCESS} from "../types";
+import {CLEAR_FILTER ,FILTER_DRUGS ,DRUG_FETCH_FAILED, DRUG_FETCH_SUCCESS, DRUG_BYID_FAILED, DRUG_BYID_SUCCESS, DRUG_ADD_FAILED, DRUG_ADD_SUCCESS} from "../types";
 import axios from "axios";
 
 const DrugsState = (props) => {
     const initialState = {
         alldrugs: [],
         particularDrug: {},
-        error: {}
+        error: {},
+        filtered: null
     }
 
     const [state, dispatch] = useReducer(DrugsReducer, initialState);
@@ -64,14 +65,27 @@ const DrugsState = (props) => {
             })
         }
     }
+
+    //Filter Drugs based on the text given
+    const filterDrugs = (text) => {
+        dispatch({type: FILTER_DRUGS, payload: text})
+    }
+
+    //Clear all the filters
+    const clearFilter = ()=>{
+        dispatch({type: CLEAR_FILTER})
+    }
     return (
         <DrugsContext.Provider value={{
             alldrugs: state.alldrugs,
             particularDrug: state.particularDrug,
             error: state.error,
+            filtered: state.filtered,
             FetchDrugs,
             FetchDrugsById,
-            AddDrug
+            AddDrug,
+            filterDrugs,
+            clearFilter
         }}>
             {props.children}
         </DrugsContext.Provider>

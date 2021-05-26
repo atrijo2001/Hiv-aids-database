@@ -33,7 +33,7 @@ const Scientist = () => {
 
     //Mavigate to the biomodel page
     const handleBioModel = () => {
-
+        history.push('/scientist/getbiomodel')
     }
 
     //Navigate to the drugs page

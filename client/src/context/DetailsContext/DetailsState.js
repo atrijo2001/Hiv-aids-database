@@ -2,14 +2,15 @@ import axios from 'axios';
 import React, {useReducer} from 'react';
 import DetailsContext from "./DetailsContext";
 import DetailsReducer from "./DetailsReducer";
-import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_FAILED, PARTICULAR_DETAILS_SUCCESS, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS} from "../types"
+import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_FAILED, PARTICULAR_DETAILS_SUCCESS, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS, FILTER_DETAILS, CLEAR_FILTER} from "../types"
 
 const DetailsState = (props) => {
     const initialState = {
         stateWiseDetails: [],
         particularStateDetails: {},
         dangerStates: [],
-        errors: {}
+        errors: {},
+        filtered: null
     }
 
     const [state, dispatch] = useReducer(DetailsReducer, initialState);
@@ -61,13 +62,27 @@ const DetailsState = (props) => {
             })
         }
     }
+
+    //Filter details based on the text given
+    const filterDetails = (text) => {
+        dispatch({type: FILTER_DETAILS, payload: text})
+    }
+
+     //Clear all the filters
+     const clearFilter = ()=>{
+        dispatch({type: CLEAR_FILTER})
+    }
+
     return (
         <DetailsContext.Provider value={{
             stateWiseDetails: state.stateWiseDetails,
             particularStateDetails: state.particularStateDetails,
             dangerStates: state.dangerStates,
+            filtered: state.filtered,
             fetchDetails,
-            FetchStateDetails
+            FetchStateDetails,
+            filterDetails, 
+            clearFilter
         }}>
             {props.children}
         </DetailsContext.Provider>
