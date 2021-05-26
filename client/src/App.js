@@ -18,6 +18,7 @@ import Scientist from './Components/UI/Scientist';
 import Layman from './Components/UI/Layman';
 import AllDetails from "./Components/DetailsWise/AllDetails"
 
+
 const App = () => {
 	return (
 		<StateState>
