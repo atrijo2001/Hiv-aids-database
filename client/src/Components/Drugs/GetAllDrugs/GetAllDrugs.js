@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import DrugsContext from "../../../context/DrugsContext/DrugsContext"
 
-import Spinner from "../../UI/Spinner"
 import DrugComp from "./DrugComp"
 import Header from "../../UI/Header";
 import Footer from "../../UI/Footer";
@@ -9,6 +8,8 @@ import DrugFilter from "./DrugFilter"
 
 import {Container, Card} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
+
+import Pagination from "./Pagination"
 
 const useStyles = makeStyles(() => ({
     cardStyles: {
@@ -20,6 +21,19 @@ const useStyles = makeStyles(() => ({
 const GetAllDrugs = () => {
     const drugContext = useContext(DrugsContext);
     const {alldrugs, FetchDrugs, filtered} = drugContext;
+
+    const [currentPage, setCurrentPage] = useState(1);
+	const [drugPerPage] = useState(5);
+
+
+    //Pagination Logic
+	//Get current page
+	const indexOfLastDrug = currentPage * drugPerPage
+	const indexOfFirstDrug = indexOfLastDrug - drugPerPage
+	const currentDrug = alldrugs.slice(indexOfFirstDrug, indexOfLastDrug)
+
+	//Change Page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     const classes = useStyles()
 
@@ -39,7 +53,7 @@ const GetAllDrugs = () => {
                         </Card>
                     </div>
                 </Container>
-                ):alldrugs.map((drug, key)=>
+                ):currentDrug.map((drug, key)=>
                 <Container>
                     <div style={{textAlign: 'center', marginTop: '1rem'}}>
                         <Card className={classes.cardStyles}>
@@ -47,6 +61,7 @@ const GetAllDrugs = () => {
                         </Card>
                     </div>
                 </Container>)}
+				  <Pagination drugsPerPage={drugPerPage} totaldrugs={alldrugs.length} paginate={paginate}/>
             </Container>
             <Footer/>
         </div>
