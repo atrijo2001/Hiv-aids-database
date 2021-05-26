@@ -44,8 +44,6 @@ const GetAllProtein = () => {
 
 	const proteinContext = useContext(ProteinContext);
 	const { allProteins, error, FetchProteins, filtered} = proteinContext;
-	const [pdb, setPdb] = useState('');
-	const [structure, setStructure] = useState('');
 	const [loading, setLoading] = useState(true);
 
 	const onClick = () => {
@@ -53,9 +51,9 @@ const GetAllProtein = () => {
 	}
 
 	useEffect(() => {
-		FetchProteins(pdb, structure);
+		FetchProteins();
 		setLoading(false);
-	}, [pdb, structure]);
+	}, []);
 
 	return (
 		<div
@@ -66,16 +64,6 @@ const GetAllProtein = () => {
 			<Header />
 			<Container>
 				<div style={{ textAlign: 'center' }}>
-					<TextField
-						className={classes.text}
-						id='pdb'
-						variant='outlined'
-						label='PDB Accession Id'
-						onChange={(e) => setPdb(e.target.value)}
-						InputProps={{
-							className: classes.input,
-						}}
-					/>
 					<ProteinFilter/>
 					<Button className={classes.buttonStyles} onClick={onClick}>Add Protein</Button>
 				</div>
