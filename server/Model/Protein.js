@@ -21,8 +21,7 @@ const proteinSchema = new mongoose.Schema({
         required: true
     },
     macromolecules: {
-        type: Array,
-        required: true
+        type: Array
     },
     uniqueLigands: {
         type: String,

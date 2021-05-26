@@ -1,30 +1,55 @@
-import {Container} from "@material-ui/core"
+import {Container, Grid} from "@material-ui/core"
+import {makeStyles} from "@material-ui/core/styles"
+
+
+const useStyles = makeStyles((theme) => ({
+    title: {
+        fontFamily: 'Bowlby One SC',
+        color: '#000000',
+        marginTop: '1rem',
+        textAlign: 'center'
+    },
+    root:{
+        flexGrow: 1,
+    },
+    paper:{
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+}));
 
 const DetailsComp = ({detail}) => {
+    const classes = useStyles()
     const {state, adults, incidencesPer1000sUninfected, livingWithHivIn1000s, mortality, services} = detail
     return (
         <Container>
-            <div style={{textAlign: 'center'}}>
-                <h3>State: {state}</h3>
-                
-                <h4>Percentage of adults Infected:</h4>
-                <p>Male: {adults.male}</p>
-                <p>Male: {adults.female}</p>
-
-                <h4>Incidences per 1000 uninfected people:</h4>
-                <p>Male: {incidencesPer1000sUninfected.male}</p>
-                <p>Male: {incidencesPer1000sUninfected.female}</p>
-
-                <h4>Cases of HIV every 1000 people:</h4>
-                <p>Male: {livingWithHivIn1000s.male}</p>
-                <p>Male: { livingWithHivIn1000s.female}</p>
-                <p>Male: { livingWithHivIn1000s.children}</p>
-
-                <h4>Mortality:</h4>
-                <p>Male: {mortality.male}</p>
-                <p>Male: { mortality.female}</p>
-                <p>Male: { mortality.children}</p>
-
+            <h3 style={{textAlign: 'center'}} className={classes.title}>State: {state}</h3>
+            <div className={classes.root} style={{textAlign: 'center'}}>
+            <Grid container spacing={3} className={classes.title}>
+                    <Grid item xs={3}>
+                        <h4>Percentage of adults Infected:</h4>
+                        <p>Male: {adults.male}</p>
+                        <p>Female: {adults.female}</p>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <h4>Incidences per 1000 uninfected people:</h4>
+                        <p>Male: {incidencesPer1000sUninfected.male}</p>
+                        <p>Female: {incidencesPer1000sUninfected.female}</p>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <h4>Cases of HIV every 1000 people:</h4>
+                        <p>Male: {livingWithHivIn1000s.male}</p>
+                        <p>Female: { livingWithHivIn1000s.female}</p>
+                        <p>Children: { livingWithHivIn1000s.children}</p>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <h4>Mortality:</h4>
+                        <p>Male: {mortality.male}</p>
+                        <p>Female: { mortality.female}</p>
+                        <p>Children: { mortality.children}</p>
+                    </Grid>
+                </Grid>
             </div>
         </Container>
     )

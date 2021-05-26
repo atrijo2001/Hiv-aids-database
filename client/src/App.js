@@ -9,6 +9,7 @@ import StateWiseCases from "./Components/StateWise/StateWiseCases"
 import GetAllDrugs from './Components/Drugs/GetAllDrugs/GetAllDrugs';
 import GetAllProteins from './Components/Protein/GetAllProtein/GetAllProtein';
 import GetBioModel from "./Components/BioModel/GetBiomodel/GetBiomodel";
+import AddProteins from "./Components/Protein/AddProtein/AddProteins"
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Homepage from './Components/UI/Homepage';
@@ -41,6 +42,7 @@ const App = () => {
 										path='/scientist/getallproteins'
 										component={GetAllProteins}
 									/>
+									<Route exact path='/scientist/addprotein' component={AddProteins}/>
 									<Route exact path='/scientist/getbiomodel' component={GetBioModel}/>
 								</Switch>
 							</BrowserRouter>

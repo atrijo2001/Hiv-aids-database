@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ProteinContext from '../../../context/ProteinContext/ProteinContext';
-import Spinner from '../../UI/Spinner';
 
 import Header from '../../UI/Header';
 import Footer from '../../UI/Footer';
 import ProteinComp from './ProteinComp';
 
-import { TextField, Container, Card, Typography } from '@material-ui/core';
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { TextField, Container, Card, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import {useHistory} from "react-router-dom"
 
 import ProteinFilter from "./ProteinFilter"
 
@@ -30,16 +31,26 @@ const useStyles = makeStyles((theme) => ({
 	cardStyles: {
 		margin: theme.spacing(2),
 	},
+	buttonStyles:{
+		color: '#fff',
+		background: '#000',
+		padding: '0.5rem 3rem'
+	}
 }));
 
 const GetAllProtein = () => {
 	const classes = useStyles();
+	const history = useHistory()
 
 	const proteinContext = useContext(ProteinContext);
 	const { allProteins, error, FetchProteins, filtered} = proteinContext;
 	const [pdb, setPdb] = useState('');
 	const [structure, setStructure] = useState('');
 	const [loading, setLoading] = useState(true);
+
+	const onClick = () => {
+		history.push('/scientist/addprotein')
+	}
 
 	useEffect(() => {
 		FetchProteins(pdb, structure);
@@ -66,6 +77,7 @@ const GetAllProtein = () => {
 						}}
 					/>
 					<ProteinFilter/>
+					<Button className={classes.buttonStyles} onClick={onClick}>Add Protein</Button>
 				</div>
 				{!loading && !error && filtered!==null
 					? filtered.map((protein, key) => (
