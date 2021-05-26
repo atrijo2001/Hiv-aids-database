@@ -32,6 +32,7 @@ const GetAllDrugs = () => {
 	const indexOfFirstDrug = indexOfLastDrug - drugPerPage
 	const currentDrug = alldrugs.slice(indexOfFirstDrug, indexOfLastDrug)
 
+    console.log(drugPerPage)
 	//Change Page
 	const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
@@ -60,8 +61,9 @@ const GetAllDrugs = () => {
                             <DrugComp key={key} drug={drug}/>
                         </Card>
                     </div>
-                </Container>)}
-				  <Pagination drugsPerPage={drugPerPage} totaldrugs={alldrugs.length} paginate={paginate}/>
+                    </Container>)}
+                console.log(drugsPerPage)
+				<Pagination drugsPerPage={drugPerPage} totaldrugs={alldrugs.length} paginate={paginate}/>
             </Container>
             <Footer/>
         </div>

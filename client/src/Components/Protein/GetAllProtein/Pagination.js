@@ -5,10 +5,10 @@ const Pagination = ({proteinsPerPage, totalProteins, paginate}) => {
     }
     return (
             <nav>
-                <ul className="pagination mb-6 pb-5">
+                <ul className="pagination mb-6 pb-5 justify-content-center">
                 {pageNumbers.map(number=>(
                     <li key={number} className='page-item'>
-                        <a onClick={()=>paginate(number)} className='page-link'>1</a>
+                        <a onClick={()=>paginate(number)} className='page-link text-dark'>{number}</a>
                     </li>
                 ))}   
                 </ul> 

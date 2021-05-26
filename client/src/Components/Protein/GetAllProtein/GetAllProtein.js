@@ -8,10 +8,10 @@ import ProteinComp from './ProteinComp';
 import { Container, Card, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {useHistory} from "react-router-dom"
+import { useHistory } from 'react-router-dom';
 
-import ProteinFilter from "./ProteinFilter"
-import Pagination from "./Pagination"
+import ProteinFilter from './ProteinFilter';
+import Pagination from './Pagination';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -32,26 +32,26 @@ const useStyles = makeStyles((theme) => ({
 	cardStyles: {
 		margin: theme.spacing(2),
 	},
-	buttonStyles:{
+	buttonStyles: {
 		color: '#fff',
 		background: '#000',
-		padding: '0.5rem 3rem'
-	}
+		padding: '0.5rem 3rem',
+	},
 }));
 
 const GetAllProtein = () => {
 	const classes = useStyles();
-	const history = useHistory()
+	const history = useHistory();
 
 	const proteinContext = useContext(ProteinContext);
-	const { allProteins, error, FetchProteins, filtered} = proteinContext;
+	const { allProteins, error, FetchProteins, filtered } = proteinContext;
 	const [loading, setLoading] = useState(true);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [proteinPerPage] = useState(5);
 
 	const onClick = () => {
-		history.push('/scientist/addprotein')
-	}
+		history.push('/scientist/addprotein');
+	};
 
 	useEffect(() => {
 		FetchProteins();
@@ -60,12 +60,15 @@ const GetAllProtein = () => {
 
 	//Pagination Logic
 	//Get current page
-	const indexOfLastProtein = currentPage * proteinPerPage
-	const indexOfFirstProtein = indexOfLastProtein - proteinPerPage
-	const currentProtein = allProteins.slice(indexOfFirstProtein, indexOfLastProtein)
+	const indexOfLastProtein = currentPage * proteinPerPage;
+	const indexOfFirstProtein = indexOfLastProtein - proteinPerPage;
+	const currentProtein = allProteins.slice(
+		indexOfFirstProtein,
+		indexOfLastProtein
+	);
 
 	//Change Page
-	const paginate = (pageNumber) => setCurrentPage(pageNumber)
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
 		<div
@@ -76,21 +79,27 @@ const GetAllProtein = () => {
 			<Header />
 			<Container>
 				<div style={{ textAlign: 'center' }}>
-					<ProteinFilter/>
-					<Button className={classes.buttonStyles} onClick={onClick}>Add Protein</Button>
+					<ProteinFilter />
+					<Button className={classes.buttonStyles} onClick={onClick}>
+						Add Protein
+					</Button>
 				</div>
-				{!loading && !error && filtered!==null
+				{!loading && !error && filtered !== null
 					? filtered.map((protein, key) => (
 							<Card className={classes.cardStyles}>
-									<ProteinComp key={key} protein={protein} />
+								<ProteinComp key={key} protein={protein} />
 							</Card>
 					  ))
 					: currentProtein.map((protein, key) => (
-						<Card className={classes.cardStyles}>
+							<Card className={classes.cardStyles}>
 								<ProteinComp key={key} protein={protein} />
-						</Card>
-				  ))}
-				  <Pagination proteinsPerPage={proteinPerPage} totalProteins={allProteins.length} paginate={paginate}/>
+							</Card>
+					  ))}
+				<Pagination
+					proteinsPerPage={proteinPerPage}
+					totalProteins={allProteins.length}
+					paginate={paginate}
+				/>
 			</Container>
 			<Footer />
 		</div>
