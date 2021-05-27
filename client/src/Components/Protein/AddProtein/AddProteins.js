@@ -28,7 +28,10 @@ const AddProteins = () => {
 	//Call the add Protein function on submit
 	const onSubmit = (values) => {
 		AddProtein(values);
-		history.push('/');
+		alert("Successfully added a protein")
+		setTimeout(() => {
+		history.push('/scientist');
+		}, 2000);
 	};
 
 	//Validate the values
@@ -41,7 +44,7 @@ const AddProteins = () => {
 		organism: Yup.string().required('Required'),
 	});
 	return (
-		<div className='background'>
+		<div className='background mb-4 pb-4'>
 			<Header />
 			<Container>
 				<Formik
@@ -206,6 +209,8 @@ const AddProteins = () => {
 						>
 							Submit
 						</Button>
+						<br />
+						<br />
 					</Form>
 				</Formik>
 			</Container>
