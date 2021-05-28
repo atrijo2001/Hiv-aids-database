@@ -40,7 +40,7 @@ export default (state, action) => {
                 ...state,
                 filtered: state.biomodels.filter(biomodel => {
                     const regex = new RegExp(`${action.payload}`, 'gi');
-                    return biomodel.gene.symbol.match(regex) || biomodel.accessionId.match(regex) || biomodel.conditions.match(regex) || biomodel.geneSymbol.match(regex);
+                    return biomodel.gene.symbol.match(regex) || biomodel.accessionId.match(regex) || biomodel.conditions.match(regex) || biomodel.geneSymbol.match(regex) || biomodel.gene.fullName.match(regex);
                 })
             }
         case CLEAR_FILTER:
