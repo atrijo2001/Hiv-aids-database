@@ -6,7 +6,6 @@ const BioModelComp = ({biomodel}) => {
     const {clinVarLink, varId} = biomodel.variation
     const {fastaLink, fullName, geneType} = biomodel.gene
 
-    console.log(biomodel)
     return (
         <div style={{textAlign: 'center'}}>
             <Container>

@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import BioModelContext from "./BioModelContext"
 import BioModelReducer from "./BioModelReducer"
 import axios from "axios"
-import {BIOMODEL_FETCH_FAILED, BIOMODEL_FETCH_SUCCESS, BIOMODEL_GENESYMBOL_FAILED, BIOMODEL_GENESYMBOL_SUCCESS, ACCESSION_ID_FAILED, ACCESSION_ID_SUCCESS} from "../types"
+import {CLEAR_FILTER ,FILTER_BIOMODEL ,BIOMODEL_FETCH_FAILED, BIOMODEL_FETCH_SUCCESS, BIOMODEL_GENESYMBOL_FAILED, BIOMODEL_GENESYMBOL_SUCCESS, ACCESSION_ID_FAILED, ACCESSION_ID_SUCCESS} from "../types"
 
 
 const BioModelState = (props) => {
@@ -10,7 +10,8 @@ const BioModelState = (props) => {
         biomodels: [],
         geneSymbol: [],
         accId: {},
-        error: {}
+        error: {},
+        filtered: null
     }
 
     const [state, dispatch] = useReducer(BioModelReducer, initialState)
@@ -62,15 +63,28 @@ const BioModelState = (props) => {
             })
         }
     }
+
+     //Filter details based on the text given
+     const filterBiomodels = (text) => {
+        dispatch({type: FILTER_BIOMODEL, payload: text})
+    }
+
+     //Clear all the filters
+     const clearFilter = ()=>{
+        dispatch({type: CLEAR_FILTER})
+    }
     return (
         <BioModelContext.Provider value={{
             biomodels: state.biomodels,
             geneSymbol: state.geneSymbol,
             accId: state.accId,
             error: state.error,
+            filtered: state.filtered,
             FetchData,
             FetchByAcId,
-            FetchByGene
+            FetchByGene,
+            filterBiomodels,
+            clearFilter
         }}>
             {props.children}
         </BioModelContext.Provider>

@@ -47,6 +47,8 @@ export const FILTER_DETAILS = 'FILTER_DETAILS'
 
 export const FILTER_DRUGS = 'FILTER_DRUGS'
 
+export const FILTER_BIOMODEL = 'FILTER_BIOMODEL'
+
 
 
 

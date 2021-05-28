@@ -1,4 +1,4 @@
-import {BIOMODEL_FETCH_FAILED, BIOMODEL_FETCH_SUCCESS, ACCESSION_ID_FAILED, ACCESSION_ID_SUCCESS, BIOMODEL_GENESYMBOL_FAILED, BIOMODEL_GENESYMBOL_SUCCESS} from "../types"
+import {CLEAR_FILTER ,FILTER_BIOMODEL,BIOMODEL_FETCH_FAILED, BIOMODEL_FETCH_SUCCESS, ACCESSION_ID_FAILED, ACCESSION_ID_SUCCESS, BIOMODEL_GENESYMBOL_FAILED, BIOMODEL_GENESYMBOL_SUCCESS} from "../types"
 
 export default (state, action) => {
     switch (action.type) {
@@ -34,6 +34,19 @@ export default (state, action) => {
             return{
                 ...state,
                 error: undefined
+            }
+        case FILTER_BIOMODEL:
+            return{
+                ...state,
+                filtered: state.biomodels.filter(biomodel => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return biomodel.gene.symbol.match(regex) || biomodel.accessionId.match(regex) || biomodel.conditions.match(regex) || biomodel.geneSymbol.match(regex);
+                })
+            }
+        case CLEAR_FILTER:
+            return{
+                ...state,
+                filtered: null
             }
     }
 }

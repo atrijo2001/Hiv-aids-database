@@ -6,6 +6,7 @@ import Footer from "../../UI/Footer";
 import BioModelComp from "./BioModelComp";
 
 import BioModelContext from "../../../context/BioModelContext/BioModelContext";
+import BioModelFilter from "./BioModelFilter"
 
 import {Card, Container} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
@@ -20,7 +21,7 @@ const useStyles = makeStyles(() => ({
 const GetBiomodel = () => {
     const classes = useStyles()
     const biomodelContext = useContext(BioModelContext);
-    const {FetchData, biomodels} = biomodelContext
+    const {FetchData, biomodels, filtered} = biomodelContext
     useEffect(()=> {
        FetchData()
     }, [])
@@ -28,15 +29,23 @@ const GetBiomodel = () => {
     return (
         <>
            <Header/>
+           <BioModelFilter/>
             <h1 style={{textAlign: 'center', fontFamily: 'Bowlby One SC'}}>Structure and Sequence Details</h1>
-            {biomodels.length>0? biomodels.map((biomodel, key)=>
+            {filtered!==null? filtered.map((biomodel, key)=>
             (
-                <Container>
+                <Container key={key}>
                     <Card key={key} className={classes.cardStyles}>
-                        <BioModelComp biomodel={biomodel}/>
+                        <BioModelComp key={key} biomodel={biomodel}/>
                      </Card>
                 </Container>
-            )): ''}
+            )): biomodels.map((biomodel, key)=>
+            (
+                <Container key={key}>
+                    <Card key={key} className={classes.cardStyles}>
+                        <BioModelComp key={key} biomodel={biomodel}/>
+                     </Card>
+                </Container>
+            ))}
            <Footer/>
         </>
     )
