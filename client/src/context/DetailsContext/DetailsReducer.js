@@ -1,4 +1,4 @@
-import {DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_SUCCESS, PARTICULAR_DETAILS_FAILED, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS, FILTER_DETAILS, CLEAR_FILTER} from "../types"
+import {DETAIL_BY_ID_FAIL, DETAIL_BY_ID_SUCCESS ,DETAILS_FETCH_SUCCESS, DETAILS_FETCH_FAILED, PARTICULAR_DETAILS_SUCCESS, PARTICULAR_DETAILS_FAILED, DETAILS_DANGER_FAILED, DETAILS_DANGER_SUCCESS, FILTER_DETAILS, CLEAR_FILTER} from "../types"
 
 export default (state, action) => {
     switch (action.type) {
@@ -47,6 +47,16 @@ export default (state, action) => {
             return{
                 ...state,
                 filtered: null
+            }
+        case DETAIL_BY_ID_SUCCESS:
+            return{
+                ...state,
+                detail: action.payload
+            }
+        case DETAIL_BY_ID_FAIL:
+            return{
+                ...state,
+                errors: action.payload
             }
         
     }

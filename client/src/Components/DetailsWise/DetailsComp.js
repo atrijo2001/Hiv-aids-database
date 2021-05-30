@@ -1,7 +1,7 @@
-import {Container, Grid} from "@material-ui/core"
+import {Container, Grid, Button} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
 
-
+import {Link} from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
     title: {
         fontFamily: 'Bowlby One SC',
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailsComp = ({detail}) => {
     const classes = useStyles()
-    const {state, adults, incidencesPer1000sUninfected, livingWithHivIn1000s, mortality, services} = detail
+    const {state, adults, incidencesPer1000sUninfected, livingWithHivIn1000s, mortality, services, _id} = detail
     return (
         <Container>
             <h3 style={{textAlign: 'center'}} className={classes.title}>State: {state}</h3>
@@ -50,6 +50,9 @@ const DetailsComp = ({detail}) => {
                         <p>Children: { mortality.children}</p>
                     </Grid>
                 </Grid>
+                <Link to={`/layman/statewisecasedetails/${_id}`}>
+                    <Button>Visualize</Button>
+                </Link>
             </div>
         </Container>
     )

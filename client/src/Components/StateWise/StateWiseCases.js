@@ -4,7 +4,7 @@ import StateContext from "../../context/StateContext/StateContext";
 import Header from "../UI/Header"
 import StateComp from "./StateComp"
 
-import {Card, Grid, Container} from "@material-ui/core"
+import {Card, Container} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
 
 const useStyles = makeStyles(() => ({

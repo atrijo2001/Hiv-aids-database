@@ -49,3 +49,12 @@ exports.alarmingDetails = async(req, res) => {
         res.status(404).json({message: "Couldnt find state"})
     }
 }
+
+exports.getDetailsById = async(req, res) => {
+    try {
+        const detail = await Details.findById(req.params.id).exec()
+        res.status(200).json(detail)
+    } catch (error) {
+        res.status(404).json({message: "Couldnt find state"})
+    }
+}
